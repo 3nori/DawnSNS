@@ -1,0 +1,21 @@
+@chasert "utf-8";
+
+html{
+    height: 100%;
+    color:white;
+}
+
+h1,p,a,#container{
+    width: 50%;
+    margin: 0 auto;
+}
+
+body{
+    height: 100%;
+    background: linear-gradient(#3C4767,#be3c25);
+    width: 50%;
+    margin: 0 auto;
+}
+
+input{}
+

@@ -1,0 +1,48 @@
+@chasert "utf-8";
+
+html{
+    height: 100%;
+    color:white;
+}
+
+h1,a,.sns,#container{
+    width: 50%;
+    margin: 0 auto;
+}
+
+body{
+    height: 100%;
+    background: linear-gradient(#3C4767,#be3c25);
+    width: 50%;
+    margin: 0 auto;
+}
+
+input{
+    color: white;
+    background-color:#415285;
+}
+
+form{
+    text-align:center;
+    background-color:rgba(0, 0, 0, 0.3) ;
+    width: 280px;
+    height: 333px;
+}
+
+form div{
+    margin: 16px 0;
+}
+
+form p{
+    margin-top: 36px;
+    padding-top: 36px;
+}
+
+.label{
+    text-align: left;
+    margin-left: 48px;
+}
+
+.
+
+/*フォームの背景*/

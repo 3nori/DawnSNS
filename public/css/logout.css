@@ -39,7 +39,15 @@ form{
     padding-bottom: 60px;
 }
 
-form div,#clear {
+.clear{
+    text-align:center;
+    background-color:rgba(0, 0, 0, 0.3) ;
+    width: 280px;
+    height: 255px;
+    padding-bottom: 60px;
+}
+
+form div {
     margin: 16px 0;
 }
 

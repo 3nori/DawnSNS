@@ -80,6 +80,7 @@ class RegisterController extends Controller
             $data = $request->input();
 
             $this->create($data);
+            session(['name' => $data['username']]);
             return redirect('added');
         }
         return view('auth.register');

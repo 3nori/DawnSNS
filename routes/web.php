@@ -33,6 +33,7 @@ Route::get('/logout', 'Auth\LoginController@logout');
 
 //ログイン中のページ
 Route::get('/top','PostsController@index');
+Route::post('/post/create','PostsController@create');
 
 Route::get('/profile','UsersController@profile');
 

@@ -8,7 +8,7 @@ use App\Post;
 
 class PostsController extends Controller
 {
-    //
+    //投稿
     public function index(){
 
         //Lesson6 indexメソッド参照　https://dawn-techschool.com/curriculum/server/6/41
@@ -17,6 +17,7 @@ class PostsController extends Controller
         //ここの「posts」はブレードと同じであればいい
     }
 
+    //表示
     //Post::create([ はPostのモデルを見に行っている
     public function create(Request $request){
         Post::create([
@@ -24,5 +25,18 @@ class PostsController extends Controller
         'posts'   => $request->newPost
         ]);
         return redirect('top');
+    }
+
+    //編集
+    public function update(Request $request){
+        $id = $request->input('id');
+        $up_post = $request->input('upPost');
+        DB::table('posts')
+            ->where('id', $id)
+            ->update(
+                ['post' => $up_post]
+            );
+        return redirect('top');
+
     }
 }

@@ -1,0 +1,87 @@
+@chasert "utf-8";
+
+html{
+    height: 100%;
+    color:white;
+}
+
+.sns{
+    size: 42px;
+    text-align:center;
+}
+
+h1,a,.sns,#container{
+    width: 484px;
+    margin: 0 auto;
+}
+
+img{
+    margin: 0 auto;
+}
+
+body{
+    height: 100%;
+    background: linear-gradient(#3C4767,#be3c25);
+    width: 50%;
+    margin: 0 auto;
+}
+
+input{
+    color: white;
+    background-color:#415285;
+}
+
+form{
+    text-align:center;
+    background-color:rgba(0, 0, 0, 0.3) ;
+    width: 280px;
+    height: 333px;
+    padding-bottom: 60px;
+}
+
+#clear{
+    text-align:center;
+    background-color:rgba(0, 0, 0, 0.3) ;
+    width: 280px;
+    height: 255px;
+    padding-bottom: 60px;
+    size: 10px;padding: ;
+}
+
+form div {
+    margin: 16px 0;
+}
+
+form p{
+    margin-top: 36px;
+    padding-top: 36px;
+}
+
+.label{
+    text-align: left;
+    margin-left: 48px;
+}
+
+.wel,h2{
+    size: 28px;
+}
+
+.cre{
+    color: white;
+}
+
+.regi,.kanryo{
+    margin-top: 36px;
+    padding-top: 36px;
+    padding-left: 21px;
+    padding-right: 21px;
+
+}
+
+.btn{
+    padding-top: 100px;
+    padding-bottom: 60px;
+}
+
+
+/*フォームの背景*/

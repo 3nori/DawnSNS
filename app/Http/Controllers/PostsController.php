@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Post;
+use Auth;
 
 class PostsController extends Controller
 {
@@ -12,7 +13,14 @@ class PostsController extends Controller
     public function index(){
 
         //Lesson6 indexメソッド参照　https://dawn-techschool.com/curriculum/server/6/41
-        $posts = DB::table('posts')->get();
+        //今は現在の記述だと自分の投稿のみ取得しているような形になるので、
+        //フォローしている人のデータまで見られるように記述を追加する必要がある
+        $posts = DB::table('posts')
+        ->join('users','posts.user_id','=','users.id')
+        ->where('posts.user_id',Auth::id())
+        ->select('users.images','users.username','posts.posts','posts.created_at as created_at')
+        ->orderBy('posts.created_at','DESC')
+        ->get();
         return view('posts.index',['posts'=>$posts]);
         //ここの「posts」はブレードと同じであればいい
     }
@@ -39,4 +47,7 @@ class PostsController extends Controller
         return redirect('top');
 
     }
+
+    //削除
+
 }

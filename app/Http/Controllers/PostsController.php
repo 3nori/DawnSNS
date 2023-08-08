@@ -49,5 +49,12 @@ class PostsController extends Controller
     }
 
     //削除
+    public function delete($id)
+    {
+        DB::table('posts')
+            ->where('id', $id)
+            ->delete();
 
+        return redirect('top');
+    }
 }

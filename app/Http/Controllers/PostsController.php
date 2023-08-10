@@ -18,7 +18,7 @@ class PostsController extends Controller
         $posts = DB::table('posts')
         ->join('users','posts.user_id','=','users.id')
         ->where('posts.user_id',Auth::id())
-        ->select('users.images','users.username','posts.posts','posts.created_at as created_at')
+        ->select('users.images','users.username','posts.posts','posts.created_at as created_at','posts.id')
         ->orderBy('posts.created_at','DESC')
         ->get();
         return view('posts.index',['posts'=>$posts]);

@@ -25,7 +25,7 @@
         <h1><a href="/top"><img src="{{ asset('/images/main_logo.png') }}"></a></h1>
             <div id="">
                 <div id="">
-                    <p>{{session('name')}}さん<img src="{{ asset('/images/dawn.png') }}"></p>
+                    <p>{{ Auth::user()->username}}さん<img src="{{ asset('/images/dawn.png') }}"></p>
                 <div>
                 <ul>
                     <li><a href="/top">ホーム</a></li>
@@ -41,15 +41,15 @@
         </div >
         <div id="side-bar">
             <div id="confirm">
-                <p>〇〇さんの</p>
+                <p>{{ Auth::user()->username}}さんの</p>
                 <div>
                 <p>フォロー数</p>
-                <p>〇〇名</p>
+                <p>{{ Auth::user()->follow}} 名</p>
                 </div>
                 <p class="btn"><a href="">フォローリスト</a></p>
                 <div>
                 <p>フォロワー数</p>
-                <p>〇〇名</p>
+                <p>{{ Auth::user()->follower}} 名</p>
                 </div>
                 <p class="btn"><a href="">フォロワーリスト</a></p>
             </div>

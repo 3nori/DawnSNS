@@ -43,7 +43,6 @@
     @endforeach
 </tbody>
 
-
 <!--サイドバーにフォロー/フォロワー数の表示-->
 @endsection
 

@@ -37,12 +37,17 @@
             <td class="">
                 <div class="Naiyou">{{ $post->posts }}</div>
             </td>
-            <td><a class="btn btn-primary"  href="/post/{id}/update">更新</a></td>
+            <div class="Update">
+            {!! Form::hidden('id', $post->id) !!}
+            {!! Form::input('text', 'upPost', $post->posts, ['required', 'class' => 'form-control']) !!}
+            </div>
+            <td><a class="btn btn-primary" href="/post/{{ $post->id }}/update" >更新</a></td>
+            {!! Form::close() !!}
             <td><a class="btn btn-danger" href="/post/{{ $post->id }}/delete" onclick="return confirm('こちらの投稿を削除してもよろしいでしょうか？')">削除</a></td>
         </tr>
     @endforeach
 </tbody>
 
-<!--サイドバーにフォロー/フォロワー数の表示-->
+<!--編集画面のモーダル-->
 @endsection
 

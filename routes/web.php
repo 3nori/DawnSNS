@@ -38,6 +38,7 @@ Route::get('/post/{id}/update','PostsController@update');
 Route::get('/post/{id}/delete','PostsController@delete');
 
 Route::get('/profile','UsersController@profile');
+Route::post('/profileup','UsersController@profileUpdate');
 
 Route::get('/search','UsersController@index');
 

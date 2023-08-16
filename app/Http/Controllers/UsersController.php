@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Validation\Rule;
+
 
 class UsersController extends Controller
 {
@@ -14,7 +16,7 @@ class UsersController extends Controller
     }
 
 
-    public function profileupdate(Request $request){
+    public function profileUpdate(Request $request){
         $validator = Validator::make($request->all(),[
             'username'  => 'required|min:2|max:12',
             'mail' => ['required', 'min:5', 'max:40', 'email', Rule::unique('users')->ignore(Auth::id())],
@@ -42,6 +44,7 @@ class UsersController extends Controller
         public function search(){
         return view('users.search');
         }
+
 
     }
 

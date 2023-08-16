@@ -27,7 +27,7 @@
 
 <!--他の投稿が見れるようにする-->
 <tbody>
-    @foreach ($posts as $post)
+    @foreach ($posts as $i => $post)
         <tr>
             <!-- 投稿者名の表示 -->
             <td class="">
@@ -49,5 +49,17 @@
 </tbody>
 
 <!--編集画面のモーダル-->
+<div class="modal-update js-modal" id="modal01">
+    <div class="modal-inner">
+        <div class="inner-content">
+            <!--編集フォームのウインドウ-->
+            <!--編集ボタン-->
+            <a class="send-button modalClose">
+                <img src="../../../public/images/edit.png" att="編集" class="image-modal">
+            </a>
+        </div>
+    </div>
+</div>
+
 @endsection
 

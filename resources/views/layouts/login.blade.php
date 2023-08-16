@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="jquery-3.7.0.min.js"></script>
-    <link rel="text/javascrip" href="../../../public/js/script.js">
+    <link rel="text/javascript" href="../../../public/js/script.js">
     <!--スマホ,タブレット対応-->
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <!--サイトのアイコン指定-->

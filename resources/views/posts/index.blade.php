@@ -37,12 +37,8 @@
             <td class="">
                 <div class="Naiyou">{{ $post->posts }}</div>
             </td>
-            <div class="Update">
-            {!! Form::hidden('id', $post->id) !!}
-            {!! Form::input('text', 'upPost', $post->posts, ['required', 'class' => 'form-control']) !!}
-            </div>
+
             <td><a class="btn btn-primary" href="/post/{{ $post->id }}/update" >更新</a></td>
-            {!! Form::close() !!}
             <td><a class="btn btn-danger" href="/post/{{ $post->id }}/delete" onclick="return confirm('こちらの投稿を削除してもよろしいでしょうか？')">削除</a></td>
         </tr>
     @endforeach
@@ -53,10 +49,15 @@
     <div class="modal-inner">
         <div class="inner-content">
             <!--編集フォームのウインドウ-->
+            <div class="Update">
+            {!! Form::hidden('id', $post->id) !!}
+            {!! Form::input('text', 'upPost', $post->posts, ['required', 'class' => 'form-control']) !!}
+            </div>
             <!--編集ボタン-->
             <a class="send-button modalClose">
                 <img src="../../../public/images/edit.png" att="編集" class="image-modal">
             </a>
+            {!! Form::close() !!}
         </div>
     </div>
 </div>

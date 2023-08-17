@@ -50,15 +50,17 @@
         <div class="inner-content">
             <!--編集フォームのウインドウ-->
             <div class="Update">
-            {!! Form::hidden('id', $post->id) !!}
-            {!! Form::input('text', 'upPost', $post->posts, ['required', 'class' => 'form-control']) !!}
-            </div>
-            <!--編集ボタン-->
+                {!! Form::hidden('id', '$post->id') !!}
+                {!! Form::input('text', 'upPost', $post->posts, ['required', 'class' => 'form-control']) !!}
+
+                <!--編集ボタン-->
             <a class="send-button modalClose">
                 <img src="../../../public/images/edit.png" att="編集" class="image-modal">
             </a>
-            {!! Form::close() !!}
         </div>
+
+        </div>
+            {!! Form::close() !!}
     </div>
 </div>
 

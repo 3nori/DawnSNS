@@ -7,7 +7,7 @@
 
 <header>
     <div id="logo">
-        <a href=""></a>
+        <a href="/top"></a>
     </div>
 </header>
 
@@ -29,40 +29,50 @@
 <tbody>
     @foreach ($posts as $i => $post)
         <tr>
+            <!--アイコン画像-->
+            <td class="">
+                <img class="icon" src="/storage/images/{{ $post->images }}">
+            </td>
             <!-- 投稿者名の表示 -->
             <td class="">
-                <div class="Namae">{{ Auth::user()->username}}</div>
+                <div class="Namae">{{ $post->username}}</div>
             </td>
             <!-- 投稿詳細 -->
             <td class="">
                 <div class="Naiyou">{{ $post->posts }}</div>
             </td>
 
-            <td><a class="btn btn-primary" href="/post/{{ $post->id }}/update" >更新</a></td>
+
+            <!--編集画面のモーダル-->
+            <div class="modal-update js-modal" id="{{ $post->id }}">
+                <form action="post/update" method="post">
+                    @csrf
+                    <div class="modal-inner">
+                        <div class="inner-content">
+                            <!--編集フォームのウインドウ-->
+                            <div class="Update">
+                                <input type="hidden" name="id" value="{{ $post->id }}">
+                                <input type="text" name="upPost" value="{{ $post->posts }}" required class="form-control">
+                                <!--編集ボタン-->
+                                <button class="send-button">
+                                    <img src="/images/edit.png" att="編集" class="image-modal">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            @if(Auth::id() === $post->user_id)
+            <td><a class="btn btn-primary modalopen" href=""  data-target="{{ $post->id }}">更新</a></td>
             <td><a class="btn btn-danger" href="/post/{{ $post->id }}/delete" onclick="return confirm('こちらの投稿を削除してもよろしいでしょうか？')">削除</a></td>
+            @endif
         </tr>
     @endforeach
 </tbody>
 
-<!--編集画面のモーダル-->
-<div class="modal-update js-modal" id="modal01">
-    <div class="modal-inner">
-        <div class="inner-content">
-            <!--編集フォームのウインドウ-->
-            <div class="Update">
-                {!! Form::hidden('id', '$post->id') !!}
-                {!! Form::input('text', 'upPost', $post->posts, ['required', 'class' => 'form-control']) !!}
 
-                <!--編集ボタン-->
-            <a class="send-button modalClose">
-                <img src="../../../public/images/edit.png" att="編集" class="image-modal">
-            </a>
-        </div>
 
-        </div>
-            {!! Form::close() !!}
-    </div>
-</div>
+
 
 @endsection
 

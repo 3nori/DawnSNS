@@ -34,16 +34,17 @@ Route::get('/logout', 'Auth\LoginController@logout');
 //ログイン中のページ
 Route::get('/top','PostsController@index');
 Route::post('/post/create','PostsController@create');
-Route::get('/post/{id}/update','PostsController@update');
+Route::post('/post/update','PostsController@update');
 Route::get('/post/{id}/delete','PostsController@delete');
 
 Route::get('/profile','UsersController@profile');
 Route::post('/profileup','UsersController@profileUpdate');
 
-Route::get('/search','UsersController@index');
+Route::get('/search','UsersController@search');
 
-Route::get('/follow-list','PostsController@index');
-Route::get('/follower-list','PostsController@index');
-
+Route::get('/follow-list','FollowsController@followList');
+Route::get('/follower-list','FollowsController@followerList');
+Route::post('/follow','FollowsController@follow');
+Route::delete('/unfollow','FollowsController@unfollow');
 
 

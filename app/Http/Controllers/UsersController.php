@@ -6,6 +6,7 @@ use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
 
 
 class UsersController extends Controller
@@ -15,36 +16,72 @@ class UsersController extends Controller
         return view('users.profile');
     }
 
-
+    //プロフィール編集機能
     public function profileUpdate(Request $request){
         $validator = Validator::make($request->all(),[
             'username'  => 'required|min:2|max:12',
             'mail' => ['required', 'min:5', 'max:40', 'email', Rule::unique('users')->ignore(Auth::id())],
-            'newpassword' => 'min:8|max:20|confirmed|alpha_num',
-            'newpassword_confirmation' => 'min:8|max:20|alpha_num',
             'bio' => 'max:150',
-            'iconimage' => 'image',
+        ],[
+            'username.required' => '名前を入力してください',
+            'username.min' => '2文字以上で入力してください',
+            'username.max' => '12文字以内で入力してください',
+            'mail.required' => 'メールアドレスを入力してください',
+            'mail.min' => '5文字以上で入力してください',
+            'mail.max' => '40文字以内で入力してください',
+            'mail.email' => '有効なメールアドレス入力してください',
+            'mail.unique' => 'もうすでに登録されているメールアドレスです',
+            'bio.max' => '150文字以内で入力してください',
         ]);
+        $validator->validate();
 
         $user = Auth::user();
+
         //画像登録
-        $image = $request->file('iconimage')->store('public/images');
-        $validator->validate();
-        $user->update([
-            'username' => $request->input('username'),
-            'mail' => $request->input('mail'),
-            'password' => bcrypt($request->input('newpassword')),
-            'bio' => $request->input('bio'),
-            'images' => basename($image),
-        ]);
+        if(isset($request->iconimage)){
+            $request->validate(['iconimage' => 'image'],['iconimage.image' => '画像ファイルを入れてください']);
+            $imagename=$request->file('iconimage')->getClientOriginalName();
+            $request->file('iconimage')->storeAs('images',$imagename,'public');
+            $user->images = $imagename;
+        }
+
+        if(isset($request->newpassword)){
+            $request->validate(['newpassword' => 'min:8|max:20|alpha_num'],['newpassword.min' => '8文字以上で入力してください','newpassword.max' => '20文字以内で入力してください']);
+            $user->password = bcrypt($request->input('newpassword'));
+        }
+
+        $user->username = $request->input('username');
+        $user->mail = $request->input('mail');
+        $user->bio = $request->input('bio');
+        $user->save();
 
         return redirect('/profile');
     }
 
-        public function search(){
-        return view('users.search');
+    //検索機能
+        public function search(Request $request){
+            $keyword = $request->input('keyword');
+            $followNumbers = DB::table('follows')
+                ->where('follower', Auth::id())
+                ->pluck('follow');
+
+            if(isset($keyword)){
+                $users = DB::table('users')
+                    ->where('id','<>',Auth::id())
+                    ->where('username','like',"%$keyword%")
+                    ->select('images','username','id')
+                    ->get();
+            }else{
+                $users = DB::table('users')
+                    ->where('id','<>',Auth::id())
+                    ->select('images','username','id')
+                    ->get();
+            }
+        return view('users.search',['users'=>$users, 'followNumbers'=>$followNumbers]);
         }
 
 
     }
+
+
 

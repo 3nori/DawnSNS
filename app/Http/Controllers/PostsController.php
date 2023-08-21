@@ -18,7 +18,7 @@ class PostsController extends Controller
         $posts = DB::table('posts')
         ->join('users','posts.user_id','=','users.id')
         ->where('posts.user_id',Auth::id())
-        ->select('users.images','users.username','posts.posts','posts.created_at as created_at','posts.id')
+        ->select('users.images','users.username','posts.posts','posts.created_at as created_at','posts.id','posts.user_id')
         ->orderBy('posts.created_at','DESC')
         ->get();
         return view('posts.index',['posts'=>$posts]);
@@ -28,7 +28,7 @@ class PostsController extends Controller
     //表示
     //Post::create([ はPostのモデルを見に行っている
     public function create(Request $request){
-        Post::create([
+        $users =Post::create([
         'user_id' => auth()->id(),
         'posts'   => $request->newPost
         ]);

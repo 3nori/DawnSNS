@@ -21,9 +21,9 @@
         <dt>Mail Address</dt>
             <dd><input type="text" name="mail" value="{{ Auth::user()->mail }}"></dd>
         <dt>Password</dt>
-            <dd><input type="password" name="newpassword"></dd>
+            <dd><input readonly type="password" name="password" value="●●●"></dd>
         <dt>new Password</dt>
-            <dd><input type="password" name="newpassword_confirmation"></dd>
+            <dd><input type="password" name="newpassword"></dd>
         <dt>Bio</dt>
             <dd><input type="text" name="bio" value="{{ Auth::user()->bio }}"></dd>
         <dt>Icon Image</dt>

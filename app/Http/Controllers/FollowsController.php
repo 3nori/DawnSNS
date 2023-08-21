@@ -11,12 +11,10 @@ class FollowsController extends Controller
 {
     //フォローリスト表示
     public function followList(Request $request){
-
         $users =Follow::create([
             'user_id' => auth()->id(),
             'posts'   => $request->newPost
             ]);
-
         return view('follows.followList');
     }
 

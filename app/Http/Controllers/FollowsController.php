@@ -9,21 +9,20 @@ use App\Follow;
 
 class FollowsController extends Controller
 {
-    //
+    //フォローリスト表示
     public function followList(Request $request){
 
-        $users =DB::table('follows')
-            ->where('follow', $request->follow_id)
-            ->where( 'follow', auth()->id());
+        $users =Follow::create([
+            'user_id' => auth()->id(),
+            'posts'   => $request->newPost
+            ]);
 
         return view('follows.followList');
     }
 
     //フォロワーリスト表示
     public function followerList(Request $request){
-        $users =DB::table('follows')
-        ->where('follower', $request->follower_id)
-        ->where( 'follower', auth()->id());
+
 
         return view('follows.followerList',);
     }

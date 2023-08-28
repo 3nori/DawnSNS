@@ -2,23 +2,27 @@
 
 @section('content')
 <!--アイコンのみ表示、アイコン押すと対象のＰｒｏｆｉｌｅ画面へ移動-->
-<tbody>
+<table>
     @foreach ($users as $user)
             <tr>
                 <!--アイコン画像-->
                 <td class="">
-                    <img class="icon" src="/storage/images/{{ $post->images }}">
+                    <a href="/profile/{{ $user->id}}">
+                        <img class="icon" src="/storage/images/{{ $user->images }}">
+                    </a>
             </td>
     @endforeach
-</tbody>
+</table>
 <!--フォロワーのつぶやきを表示。多分ここは投稿の条件書き換えじゃないかな-->
-<tbody>
-    @foreach ($posts as $i => $post)
+<table>
+    @foreach ($posts as $post)
             <tr>
                 <!--アイコン画像-->
                 <td class="">
-                    <img class="icon" src="/storage/images/{{ $post->images }}">
-                </td>
+                    <a href="/profile/{{ $post->user_id}}">
+                        <img class="icon" src="/storage/images/{{ $post->images }}">
+                    </a>
+                    </td>
                 <!-- 投稿者名の表示 -->
                 <td class="">
                     <div class="Namae">{{ $post->username}}</div>
@@ -28,5 +32,5 @@
                     <div class="Naiyou">{{ $post->posts }}</div>
             </td>
     @endforeach
-</tbody>
+</table>
 @endsection

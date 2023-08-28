@@ -25,7 +25,7 @@ class PostsController extends Controller
         //ここの「posts」はブレードと同じであればいい
     }
 
-    //表示
+    //データの保存
     //Post::create([ はPostのモデルを見に行っている
     public function create(Request $request){
         $users =Post::create([

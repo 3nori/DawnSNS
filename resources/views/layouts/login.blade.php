@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="description" content="ページの内容を表す文章"/>
     <title></title>
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{{asset('css/reset.css') }}">
+    <link rel="stylesheet" href="{{asset('css/style.css') }}">
     <!--スマホ,タブレット対応-->
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <!--サイトのアイコン指定-->
@@ -25,9 +25,9 @@
         <h1><a href="/top"><img src="{{ asset('/images/main_logo.png') }}"></a></h1>
             <div id="">
                 <div id="">
-                    <p>{{ Auth::user()->username}}さん<img src="{{ asset('/storage/images/' . Auth::user()->images) }}"></p>
+                    <p class="menuname">{{ Auth::user()->username}}さん<img src="{{ asset('/storage/images/' . Auth::user()->images) }}"></p>
                 <div>
-                <ul>
+                <ul class="menu">
                     <li><a href="/top">ホーム</a></li>
                     <li><a href="/profile">プロフィール</a></li>
                     <li><a href="/logout">ログアウト</a></li>
@@ -44,12 +44,12 @@
                 <p>{{ Auth::user()->username}}さんの</p>
                 <div>
                 <p>フォロー数</p>
-                <p>{{ Auth::user()->follow}} 名</p>
+                <p>{{$followCount}} 名</p>
                 </div>
                 <p class="btn"><a href="/follow-list">フォローリスト</a></p>
                 <div>
                 <p>フォロワー数</p>
-                <p>{{ Auth::user()->follower}} 名</p>
+                <p>{{$followerCount}} 名</p>
                 </div>
                 <p class="btn"><a href="/follower-list">フォロワーリスト</a></p>
             </div>

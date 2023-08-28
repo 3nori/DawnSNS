@@ -14,3 +14,10 @@ $(function () {
     //     return false;
     // });
 });
+
+//ハンバーガーメニュー
+$(function () {
+    $('.menuname').on('click', function (){
+        $('.menu').slideToggle();
+    });
+});

@@ -10,19 +10,37 @@ use App\Follow;
 class FollowsController extends Controller
 {
     //フォローリスト表示
-    public function followList(Request $request){
-        $users =Follow::create([
-            'user_id' => auth()->id(),
-            'posts'   => $request->newPost
-            ]);
-        return view('follows.followList');
+    public function followList(){
+        $users = DB::table('users')
+        ->join('follows','follows.follow','=','users.id')
+        ->where('follower', auth()->id())
+        ->select('images','users.id')
+        ->get();
+        $posts = DB::table('posts')
+        ->join('users','posts.user_id','=','users.id')
+        ->join('follows','follows.follow','=','users.id')
+        ->where('follower', auth()->id())
+        ->select('users.images','users.username','posts.posts','posts.created_at as created_at','posts.id','posts.user_id')
+        ->orderBy('posts.created_at','DESC')
+        ->get();
+        return view('follows.followList',['posts'=>$posts ,'users'=>$users]);
     }
 
     //フォロワーリスト表示
-    public function followerList(Request $request){
-
-
-        return view('follows.followerList',);
+    public function followerList(){
+        $users = DB::table('users')
+        ->join('follows','follows.follower','=','users.id')
+        ->where('follow', auth()->id())
+        ->select('images','users.id')
+        ->get();
+        $posts = DB::table('posts')
+        ->join('users','posts.user_id','=','users.id')
+        ->join('follows','follows.follower','=','users.id')
+        ->where('follow', auth()->id())
+        ->select('users.images','users.username','posts.posts','posts.created_at as created_at','posts.id','posts.user_id')
+        ->orderBy('posts.created_at','DESC')
+        ->get();
+        return view('follows.followerList',['posts'=>$posts ,'users'=>$users]);
     }
 
     //フォロー

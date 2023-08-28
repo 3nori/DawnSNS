@@ -26,3 +26,7 @@ header{
 .modal-update{
     display: none;
 }
+
+.menu {
+    display: none;
+}

@@ -80,6 +80,23 @@ class UsersController extends Controller
         return view('users.search',['users'=>$users, 'followNumbers'=>$followNumbers]);
         }
 
+        //相手のProfile
+        public function profileLink($id){
+            $followNumbers = DB::table('follows')
+            ->where('follower', Auth::id())
+            ->pluck('follow');
+            $user = DB::table('users')
+            ->where('id', $id)
+            ->select('images','id','username','bio')
+            ->first();
+            $posts = DB::table('posts')
+            ->join('users','posts.user_id','=','users.id')
+            ->where('users.id', $id)
+            ->select('users.images','users.username','posts.posts','posts.created_at as created_at','posts.id','posts.user_id')
+            ->orderBy('posts.created_at','DESC')
+            ->get();
+            return view('users.userprofile',['posts'=>$posts ,'user'=>$user ,'followNumbers'=>$followNumbers]);
+        }
 
     }
 
